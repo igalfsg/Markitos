@@ -1,0 +1,27 @@
+@page "/share"
+@inherits ShareStoryBase
+<h1>Share a Marcos Story</h1>
+
+<p>We would love to hear your Marcos Stories, share your story below.</p>
+<EditForm Model="@_story">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <textarea rows="2"
+              maxlength="3900"
+              @bind="_story.Story"
+              placeholder="Enter your Marcos Story here..."
+              style="resize:both;width:100%;"
+              oninput="this.style.height = 'auto'; this.style.height = (this.scrollHeight) + 'px';">
+    </textarea>
+    <div class="form-group">
+        <label>Share story privately with family</label>
+        <InputCheckbox @bind-Value="_story.ShareWithFamOnly" />
+    </div>
+    <div class="form-group">
+        <label>Share story anonymously</label>
+        <InputCheckbox @bind-Value="_story.ShareAnon" />
+    </div>
+</EditForm>
+
+<button class="btn btn-success" @onclick="SubmitStoryAsync">Submit</button>
