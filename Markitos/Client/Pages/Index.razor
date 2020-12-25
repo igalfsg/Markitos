@@ -1,26 +1,31 @@
 ﻿@page "/"
 @inherits IndexBase
 @attribute [Authorize]
+<h1>Share a Marcos Story</h1>
 
-@if (_isloading)
-{
-    <Circle />
-}
-else if (_stories != null && _stories.Count > 0)
-{
-    foreach (var story in _stories)
-    {
-        <div class="card mb-3">
-            <div class="card-header" text-white bg-secondary>
-                @story.Author
-            </div>
-            <div class="card-body">
-                @story.Story
-            </div>
-        </div>
-    }
-}
-else
-{
-    <p>sorry no stories to show right now</p>
-}
+<p>Marcos has touched so many lives in just his short 30 years but everyone has shared so many good memories with him that on behalf of Markitos and to elevate his soul an honor him forever, we will love that every one who: loved him and care for him, had fun with him, and had a good laugh with him. Take the time to share with us every story with him to make him proud  as we are of him and make us laugh and happy about every message you share with us to enlighten our pain in his passing.</p>
+<EditForm Model="@_story">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <textarea rows="2"
+              maxlength="3900"
+              @bind="_story.Story"
+              placeholder="Enter your Marcos Story here..."
+              style="resize:both;width:100%;"
+              oninput="this.style.height = 'auto'; this.style.height = (this.scrollHeight) + 'px';">
+    </textarea>
+    <div class="form-group">
+        <label>Share story privately with family</label>
+        <InputCheckbox @bind-Value="_story.ShareWithFamOnly" />
+    </div>
+    <div class="form-group">
+        <label>Share story anonymously</label>
+        <InputCheckbox @bind-Value="_story.ShareAnon" />
+    </div>
+    <div class="form-group">
+        <label>If you want to share pictures, or video please send them to igalfsg@gmail.com</label>
+    </div>
+</EditForm>
+
+<button class="btn btn-success" @onclick="SubmitStoryAsync">Submit</button>

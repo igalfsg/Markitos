@@ -14,30 +14,25 @@ namespace Markitos.Client.Pages
 {
     public class ShareStoryBase : ComponentBase
     {
-        protected StoryModel _story= new();
+        protected List<ReadStoryModel> _stories;
+        protected bool _isloading;
         [Inject] BackendService _httpService { get; set; }
         [Inject] NavigationManager _navigationManager { get; set; }
         [Inject] protected IMatToaster _toaster { get; set; }
-
-        protected async Task SubmitStoryAsync()
+        protected override async Task OnInitializedAsync()
         {
-            if(string.IsNullOrWhiteSpace(_story.Story))
+            _isloading = true;
+            APIResultModel result = await _httpService.CallGetApiAsync(_navigationManager.BaseUri +
+                "api/Story/getStories");
+            if (result.Success)
             {
-                return;
+                _stories = JsonSerializer.Deserialize<List<ReadStoryModel>>(result.Message);
             }
             else
             {
-                APIResultModel result = await _httpService.PostToBackend(_navigationManager.BaseUri 
-                    + "api/Story/share", JsonSerializer.Serialize(_story));
-                if(result.Success)
-                {
-                    _toaster.Add(result.Message, MatToastType.Success);
-                }
-                else
-                {
-                    _toaster.Add(result.Message, MatToastType.Danger);
-                }
+                _toaster.Add(result.Message, MatToastType.Danger);
             }
+            _isloading = false;
         }
 
     }
