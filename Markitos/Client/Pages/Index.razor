@@ -1,3 +1,26 @@
 ﻿@page "/"
+@inherits IndexBase
 @attribute [Authorize]
 
+@if (_isloading)
+{
+    <Circle />
+}
+else if (_stories != null && _stories.Count > 0)
+{
+    foreach (var story in _stories)
+    {
+        <div class="card mb-3">
+            <div class="card-header" text-white bg-secondary>
+                @story.Author
+            </div>
+            <div class="card-body">
+                @story.Story
+            </div>
+        </div>
+    }
+}
+else
+{
+    <p>sorry no stories to show right now</p>
+}

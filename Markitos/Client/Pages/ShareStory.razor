@@ -2,7 +2,7 @@
 @inherits ShareStoryBase
 <h1>Share a Marcos Story</h1>
 
-<p>We would love to hear your Marcos Stories, share your story below.</p>
+<p>Marcos has touched so many lives in just his short 30 years but everyone has shared so many good memories with him that on behalf of Markitos and to elevate his soul an honor him forever, we will love that every one who: loved him and care for him, had fun with him, and had a good laugh with him. Take the time to share with us every story with him to make him proud  as we are of him and make us laugh and happy about every message you share with us to enlighten our pain in his passing.</p>
 <EditForm Model="@_story">
     <DataAnnotationsValidator />
     <ValidationSummary />
@@ -21,6 +21,9 @@
     <div class="form-group">
         <label>Share story anonymously</label>
         <InputCheckbox @bind-Value="_story.ShareAnon" />
+    </div>
+    <div class="form-group">
+        <label>If you want to share pictures, or video please send them to igalfsg@gmail.com</label>
     </div>
 </EditForm>
 

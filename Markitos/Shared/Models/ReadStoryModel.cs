@@ -7,17 +7,20 @@ using System.Threading.Tasks;
 
 namespace Markitos.Shared.Models
 {
-    public class StoryModel
+    public class ReadStoryModel
     {
-        public StoryModel()
+        public ReadStoryModel()
         {
 
         }
+        public ReadStoryModel (string story, string name)
+        {
+            Story = story;
+            Author = name;
+        }
         [JsonPropertyName("Story")]
         public string Story { get; set; }
-        [JsonPropertyName("ShareWithFamOnly")]
-        public bool ShareWithFamOnly { get; set; } = false;
-        [JsonPropertyName("ShareAnon")]
-        public bool ShareAnon { get; set; } = false;
+        [JsonPropertyName("Author")]
+        public string Author { get; set; }
     }
 }

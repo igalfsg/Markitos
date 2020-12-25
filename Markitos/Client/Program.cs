@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Markitos.Client.Services;
+using MatBlazor;
 
 namespace Markitos.Client
 {
@@ -31,7 +32,15 @@ namespace Markitos.Client
                 builder.Configuration.Bind("AzureAdB2C", options.ProviderOptions.Authentication);
                 options.ProviderOptions.DefaultAccessTokenScopes.Add("https://markitosfleg.onmicrosoft.com/eeb66d56-12ab-4f74-80b6-f93f172a52ee/post");
             });
-
+            builder.Services.AddMatToaster(config =>
+            {
+                config.Position = MatToastPosition.BottomRight;
+                config.PreventDuplicates = true;
+                config.NewestOnTop = true;
+                config.ShowCloseButton = true;
+                config.MaximumOpacity = 95;
+                config.VisibleStateDuration = 10000;
+            });
             await builder.Build().RunAsync();
         }
     }

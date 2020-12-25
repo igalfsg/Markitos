@@ -33,17 +33,6 @@ namespace Markitos.Server.Manager
             return user.FindFirst(c => c.Type == "http://schemas.microsoft.com/identity/claims/objectidentifier").Value;
         }
 
-        private static void GetUserUPNAndType(ClaimsPrincipal user)
-        {
-            //userClaims.UserName = GetUserUPN(user);
-            //userClaims.Type = AppConstants.USER;
-            //if (string.IsNullOrWhiteSpace(userClaims.UserName))
-            //{
-            //    userClaims.UserName = GetAppID(user);
-            //    userClaims.Type = AppConstants.SERVICEPRINCIPAL;
-            //}
-        }
-
         public static string GetUserUPN(ClaimsPrincipal user)
         {
             return user.FindFirstValue(ClaimTypes.Name);

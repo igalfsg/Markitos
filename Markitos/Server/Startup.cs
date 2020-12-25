@@ -9,6 +9,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Linq;
+using Markitos.Server.Data;
+using Microsoft.EntityFrameworkCore;
+using Markitos.Server.Manager;
 
 namespace Markitos.Server
 {
@@ -27,8 +30,10 @@ namespace Markitos.Server
         {
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddMicrosoftIdentityWebApi(Configuration.GetSection("AzureAdB2C"));
-
+            services.AddDbContext<StoryDB>(options => options.UseSqlServer(Configuration.GetConnectionString("SQLDBConnection"),
+                providerOptions => providerOptions.EnableRetryOnFailure()));
             services.AddControllersWithViews();
+            services.AddTransient<StoryManagercs>();
             services.AddRazorPages();
         }
 

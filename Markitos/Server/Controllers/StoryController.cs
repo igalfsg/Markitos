@@ -1,4 +1,5 @@
 ﻿using Markitos.Server.Manager;
+using Markitos.Server.Models;
 using Markitos.Shared.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -16,18 +17,30 @@ namespace Markitos.Server.Controllers
     [ApiController]
     public class StoryController : ControllerBase
     {
+        private readonly StoryManagercs _storyManager;
+        public StoryController(StoryManagercs storyManagercs)
+        {
+            _storyManager = storyManagercs;
+        }
         [HttpPost]
         [Route("share")]
-        public string ShareStoryAsync(StoryModel story)
+        public async Task<string> ShareStoryAsync(StoryModel story)
         {
             if(story == null || string.IsNullOrWhiteSpace(story.Story))
             {
                 return "Error: Story cannot be empty";
             }
-            ClaimsPrincipal user = User;
             string name = ClaimsManager.GetUserFirstName(User);
             string Lastname = ClaimsManager.GetUserLastName(User);
-            return "";
+            DBStoryModel dbStory = new DBStoryModel(story, name + " " + Lastname);
+            return await _storyManager.AddStoryAsync(dbStory);
+        }
+
+        [HttpGet]
+        [Route("getStories")]
+        public List<ReadStoryModel> GetStories()
+        {
+            return _storyManager.GetStories();
         }
     }
 }
