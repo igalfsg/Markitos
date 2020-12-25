@@ -19,8 +19,11 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: '5.0.x'
-    
-    - name: Build with dotnet
+   
+    - name: list
+      run: ls
+      
+    - name: get in
       run: cd Markitos
       
     - name: Build with dotnet
