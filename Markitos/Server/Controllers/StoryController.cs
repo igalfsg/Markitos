@@ -2,12 +2,8 @@
 using Markitos.Server.Models;
 using Markitos.Shared.Models;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Markitos.Server.Controllers
@@ -40,7 +36,16 @@ namespace Markitos.Server.Controllers
         [Route("getStories")]
         public List<ReadStoryModel> GetStories()
         {
-            return _storyManager.GetStories();
+            string userID = ClaimsManager.GetUserObjectID(User);
+            if(userID.Equals("36e8e535-23b8-4af1-b29e-544ea846e674") 
+                || userID.Equals("dc4b9a59-f6e9-4ecb-b02f-3319a726bebb"))
+            {
+                return _storyManager.Admin();
+            }
+            else
+            {
+                return _storyManager.GetStories();
+            }
         }
     }
 }

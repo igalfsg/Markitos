@@ -30,6 +30,7 @@ namespace Markitos.Client.Pages
                 if (result.Success)
                 {
                     _toaster.Add(result.Message, MatToastType.Success);
+                    _navigationManager.NavigateTo("/share");
                 }
                 else
                 {

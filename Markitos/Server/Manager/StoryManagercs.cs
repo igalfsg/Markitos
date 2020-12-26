@@ -52,5 +52,16 @@ namespace Markitos.Server.Manager
             }
             return stories;
         }
+
+        public List<ReadStoryModel> Admin()
+        {
+            IEnumerable<DBStoryModel> dbStories = _storyDB.Stories.ToList();
+            List<ReadStoryModel> stories = new();
+            foreach (DBStoryModel dbstory in dbStories)
+            {
+                stories.Add(new ReadStoryModel(dbstory.Story, dbstory.Name));
+            }
+            return stories;
+        }
     }
 }

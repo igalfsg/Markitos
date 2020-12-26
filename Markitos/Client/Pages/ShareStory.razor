@@ -1,26 +1,69 @@
 @page "/share"
 @inherits ShareStoryBase
+@attribute [Authorize]
 
-@if (_isloading)
-{
-    <Circle />
-}
-else if (_stories != null && _stories.Count > 0)
-{
-    foreach (var story in _stories)
-    {
-        <div class="card mb-3">
-            <div class="card-header" text-white bg-secondary>
-                @story.Author
+<AuthorizeView>
+    <Authorized  Context="Auth">
+
+        @if (_isloading)
+        {
+            <Circle />
+        }
+        else if (_stories != null && _stories.Count > 0)
+        {
+            <div class="card mb-3">
+                <div class="card-header" text-white bg-secondary>
+                    Betty Flegmann Sandler
+                </div>
+                <div class="card-body">
+                    <p>
+                        Con el corazon desgarrado de una madre Agradezco infinitamente a nombre de nuestra familia y de Marcos Z"L  a cada una de sus Tefilot, por estos 3 a&ntilde;os y 4 meses,  jalas, y acciones buenas por nuestro querido y adorado Markitos, yo fui bendecida por ser su madre es el mejor regalo q DS me pudo dar,  deja un hueco gigante de llenar en este MUNDO, mucho q aprender de el, jamas en su vida se quejo de NADA, siempre vio con alegria cada segundo de su vida, una broma, una sonrisa, una cancion,  nunca sufrio, ni se rindio, lucho incansablemente, el siempre dijo estoy bien y  todos vamos a estar bien, agradezcan cada segundo de su vida siempre pensando en el, nunca lo olvidaremos fue nuestro pilar y lo seguira siendo siempre el mismo nos dara fortaleza para seguir adelante,  a porque aparte seguira haciendo el bien por muchos a&ntilde;os Mas G'D
+                        <br>
+                        H se llevo al mejor MVP a su verdadero Hall of Fame lo extra&ntilde;aremos muchisimo, pero siempre trascendio e hizo mucho mas  a sus 30 a&ntilde;os q muchos a los 80, se comio al mundo con su corazon gigante y su gran humildad y empatia en muy poco tiempo; el mejor ser Humano querido en todo el mundo solo por ser EL
+                        <br>
+                        Con mucho agradecimiento y cari&ntilde;o
+                        <br>
+                        Familia Flegmann Sandler
+                    </p>
+                    <p>
+                        With a mother's broken heart I write this message to thank you from the bottom of my heart for every action you did to help Marcos Z"L this past 3 years and 4 months. I was blessed by being his mother, the best present God could have given me. He left a giant hole in this world. We can all learn a lot from him: he never complained about anything, was happy every second of his life, he always had the perfect joke, he always had a smile on his face, he always had a song to make you better, he never suffered or surrendered. He fought this head on and always said, I am ok, we are all going to be ok. We should all be thankful for every second we have in this world and think of him. We will never forget him, he was our pilar and he will always be. He will give us the strength to keep going forward.
+                        <br>
+                        God has taken the MVP to the true Hall of Fame, we will miss him so much, but he always transcended, and he did more in his 30 years than many do in 80. He took over the world with his giant heart, humility, and empathy. The best human being. Loved for being himself.
+                        <br>
+                        With lots of Love and gratitude,
+                        <br>
+                        Fam Flegmann Sandler
+                    </p>
+                </div>
             </div>
-            <div class="card-body">
-                @story.Story
+            <div class="card mb-3">
+                <div class="card-header" text-white bg-secondary>
+                    Funeral Service
+                </div>
+                <div class="card-body">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/0y6kTbR7oNI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
             </div>
-        </div>
-    }
-}
-else
-{
-    <p>sorry no stories to show right now</p>
-}
+            foreach (var story in _stories)
+            {
+                <div class="card mb-3">
+                    <div class="card-header" text-white bg-secondary>
+                        @story.Author
+                    </div>
+                    <div class="card-body">
+                        @story.Story
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <p>sorry no stories to show right now</p>
+        }
+
+    </Authorized>
+    <NotAuthorized>
+        <a href="authentication/login">Log in</a>
+    </NotAuthorized>
+</AuthorizeView>
 
