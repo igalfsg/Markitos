@@ -3,10 +3,12 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <UserSecretsId>Markitos.Server-5079497C-B85A-450B-915D-1CEF59BD90AA</UserSecretsId>
+    <ApplicationInsightsResourceId>/subscriptions/2d026b05-b695-4460-b6f6-46302b0606d9/resourcegroups/codingflamingo/providers/Microsoft.Insights/components/Markitos</ApplicationInsightsResourceId>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="BlazorPro.Spinkit" Version="1.2.0" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.15.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="5.0.0" />
   </ItemGroup>
 

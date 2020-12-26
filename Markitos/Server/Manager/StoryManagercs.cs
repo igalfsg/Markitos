@@ -1,6 +1,7 @@
 ﻿using Markitos.Server.Data;
 using Markitos.Server.Models;
 using Markitos.Shared.Models;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +12,11 @@ namespace Markitos.Server.Manager
     public class StoryManagercs
     {
         private readonly StoryDB _storyDB;
-        public StoryManagercs(StoryDB storyDB)
+        private readonly ILogger<StoryManagercs> _logger;
+        public StoryManagercs(StoryDB storyDB, ILogger<StoryManagercs> logger)
         {
             _storyDB = storyDB;
+            _logger = logger;
         }
 
         public async Task<string> AddStoryAsync(DBStoryModel story)
@@ -30,6 +33,7 @@ namespace Markitos.Server.Manager
             }
             catch(Exception ex)
             {
+                _logger.LogError("error adding", ex);
                 return "error adding your story please try again later.";
             }
         }
