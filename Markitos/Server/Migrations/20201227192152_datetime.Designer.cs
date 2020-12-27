@@ -4,14 +4,16 @@ using Markitos.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Markitos.Server.Migrations
 {
     [DbContext(typeof(StoryDB))]
-    partial class StoryDBModelSnapshot : ModelSnapshot
+    [Migration("20201227192152_datetime")]
+    partial class datetime
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

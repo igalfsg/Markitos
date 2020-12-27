@@ -26,5 +26,6 @@ namespace Markitos.Server.Models
         public string Name { get; set; }
         public bool ShareWithFamOnly { get; set; } = false;
         public bool ShareAnon { get; set; } = false;
+        public DateTime TimeSubmited { get; set; } = DateTime.UtcNow;
     }
 }

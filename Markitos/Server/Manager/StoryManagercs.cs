@@ -41,7 +41,7 @@ namespace Markitos.Server.Manager
         public List<ReadStoryModel> GetStories()
         {
             IEnumerable<DBStoryModel> dbStories = _storyDB.Stories.Where(i => 
-            i.ShareWithFamOnly == false);
+            i.ShareWithFamOnly == false).OrderByDescending(x => x.TimeSubmited);
             List<ReadStoryModel> stories = new();
             foreach (DBStoryModel dbstory in dbStories)
             {
@@ -59,7 +59,8 @@ namespace Markitos.Server.Manager
 
         public List<ReadStoryModel> Admin()
         {
-            IEnumerable<DBStoryModel> dbStories = _storyDB.Stories.ToList();
+            IEnumerable<DBStoryModel> dbStories = _storyDB.Stories.ToList()
+                .OrderByDescending(x => x.TimeSubmited);
             List<ReadStoryModel> stories = new();
             foreach (DBStoryModel dbstory in dbStories)
             {
