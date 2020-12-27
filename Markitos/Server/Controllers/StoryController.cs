@@ -38,7 +38,8 @@ namespace Markitos.Server.Controllers
         {
             string userID = ClaimsManager.GetUserObjectID(User);
             if(userID.Equals("36e8e535-23b8-4af1-b29e-544ea846e674") 
-                || userID.Equals("dc4b9a59-f6e9-4ecb-b02f-3319a726bebb"))
+                || userID.Equals("dc4b9a59-f6e9-4ecb-b02f-3319a726bebb")
+                || userID.Equals("18298411-97b7-4c8d-9cd1-acfef586c9de"))
             {
                 return _storyManager.Admin();
             }
