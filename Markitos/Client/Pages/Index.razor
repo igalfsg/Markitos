@@ -3,7 +3,7 @@
 @attribute [Authorize]
 
 <AuthorizeView>
-    <Authorized  Context="Auth">
+    <Authorized Context="Auth">
         <h1>Share a Marcos Story</h1>
 
         <p>Marcos has touched so many lives in just his short 30 years but everyone has shared so many good memories with him that on behalf of Markitos and to elevate his soul an honor him forever, we will love that every one who: loved him and care for him, had fun with him, and had a good laugh with him. Take the time to share with us every story with him to make him proud  as we are of him and make us laugh and happy about every message you share with us to enlighten our pain in his passing.</p>
@@ -30,8 +30,14 @@
                 <label>If you want to share pictures, or video please send them to igalfsg@gmail.com</label>
             </div>
         </EditForm>
-
-        <button class="btn btn-success" @onclick="SubmitStoryAsync">Submit</button>
+        @if (_submitting)
+        {
+            <Circle />
+        }
+        else
+        {
+            <button class="btn btn-success" @onclick="SubmitStoryAsync">Submit</button>
+        }
 
     </Authorized>
     <NotAuthorized>

@@ -16,9 +16,10 @@ namespace Markitos.Client.Pages
         [Inject] BackendService _httpService { get; set; }
         [Inject] NavigationManager _navigationManager { get; set; }
         [Inject] protected IMatToaster _toaster { get; set; }
-
+        protected bool _submitting = false;
         protected async Task SubmitStoryAsync()
         {
+            _submitting = true;
             if (string.IsNullOrWhiteSpace(_story.Story))
             {
                 return;
@@ -37,6 +38,7 @@ namespace Markitos.Client.Pages
                     _toaster.Add(result.Message, MatToastType.Danger);
                 }
             }
+            _submitting = false;
         }
         
     }
