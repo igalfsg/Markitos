@@ -64,6 +64,10 @@ namespace Markitos.Server.Manager
             List<ReadStoryModel> stories = new();
             foreach (DBStoryModel dbstory in dbStories)
             {
+                if(dbstory.ShareWithFamOnly)
+                {
+                    dbstory.Name += " (Family Only)";
+                }
                 stories.Add(new ReadStoryModel(dbstory.Story, dbstory.Name));
             }
             return stories;
