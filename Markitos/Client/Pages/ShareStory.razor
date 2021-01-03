@@ -51,7 +51,13 @@
                         @story.Author
                     </div>
                     <div class="card-body">
-                        @story.Story
+                        @foreach (var paragraph in story.Story.Split("\n"))
+                        {
+                            if (!string.IsNullOrWhiteSpace(paragraph))
+                            {
+                                <p>@paragraph</p>
+                            }
+                        }
                     </div>
                 </div>
             }
